@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      x:Class="MauiDynamicUnderlineControls.Controls.UnderlinedEntry"
+      
+      x:Name="Container"
+      BackgroundColor="Transparent">
+    
+    <Border
+        x:Name="EntryBorder"
+        Background="{Binding EntryBackground, Source={x:Reference Container}}"
+        BackgroundColor="{Binding EntryBackgroundColor, Source={x:Reference Container}}"
+        Stroke="{Binding Stroke, Source={x:Reference Container}}"
+        StrokeShape="{Binding StrokeShape, Source={x:Reference Container}}"
+        StrokeThickness="{Binding StrokeThickness, Source={x:Reference Container}}"
+        Padding="{OnPlatform Android='10, 0, 0, 0', iOS='10, 0, 0, 0', MacCatalyst='0', WinUI='0'}">
+        
+        <Entry
+            x:Name="ContainedEntry"
+            Placeholder="{Binding Placeholder, Source={x:Reference Container}}"
+            PlaceholderColor="{Binding PlaceholderColor, Source={x:Reference Container}}"
+            FontAttributes="{Binding FontAttributes, Source={x:Reference Container}}"
+            FontFamily="{Binding FontFamily, Source={x:Reference Container}}"
+            FontSize="{Binding FontSize, Source={x:Reference Container}}"
+            CharacterSpacing="{Binding CharacterSpacing, Source={x:Reference Container}}"
+            HorizontalTextAlignment="{Binding HorizontalTextAlignment, Source={x:Reference Container}}"
+            VerticalTextAlignment="{Binding VerticalTextAlignment, Source={x:Reference Container}}"
+            TextTransform="{Binding TextTransform, Source={x:Reference Container}}"
+            TextColor="{Binding TextColor, Source={x:Reference Container}}"
+            Text="{Binding Text, Source={x:Reference Container}}"
+            MaxLength="{Binding MaxLength, Source={x:Reference Container}}"
+            
+            Background="Transparent"
+            BackgroundColor="Transparent"
+            Margin="{OnPlatform Android='0, 0, 0, -4', iOS='0, 0, 0, 0', MacCatalyst='0', WinUI='0'}"/>
+    </Border>
+    
+    <!-- Limitation
+    While this works fine for some applications, the "underline" beneath the
+    border will not respect the radius of just one bottom corner (i.e. if
+    one bottom corner has a radius, and the other is square, the underline
+    will still only draw partially across the bottom). For a proper
+    implementation, a Line would need to be used, and each bottom corner's
+    radius would need to be used to calculate the start and end positions.
+    
+    To see this limitation, set one of the bottom corner's radius to some
+    non-zero value, and leave the other bottom corner squared. The underline
+    does not extend to the sharp corner, as might be expected.
+    -->
+    <BoxView
+        Color="{Binding UnderlineColor, Source={x:Reference Container}}"
+        HeightRequest="{Binding UnderlineStrokeThickness, Source={x:Reference Container}}"
+        WidthRequest="{Binding UnderlineWidth, Source={x:Reference Container}}"
+        IsVisible="{Binding IsFocused, Source={x:Reference ContainedEntry}}"
+        
+        VerticalOptions="End"/>
+    
+</Grid>
