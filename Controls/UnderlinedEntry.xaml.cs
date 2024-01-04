@@ -20,6 +20,8 @@ public partial class UnderlinedEntry : Grid
     #endregion
 
     #region Entry-based_Properties
+    public static readonly BindableProperty EntryMarginProperty = BindableProperty.Create(nameof(EntryMargin), typeof(Thickness), typeof(UnderlinedEntry), default(Thickness));
+
     public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(UnderlinedEntry), default(string));
     public static readonly BindableProperty PlaceholderColorProperty = BindableProperty.Create(nameof(PlaceholderColor), typeof(Color), typeof(UnderlinedEntry), new Color(0.5f) );
     public static readonly BindableProperty FontAttributesProperty = BindableProperty.Create(nameof(FontAttributes), typeof(FontAttributes), typeof(UnderlinedEntry), FontAttributes.None);
@@ -134,6 +136,15 @@ public partial class UnderlinedEntry : Grid
     #endregion
 
     #region Entry-based_Mutators
+
+    /// <summary>
+    /// Gets or set the margin for the wrapped Entry control.
+    /// </summary>
+    public Thickness EntryMargin
+    {
+        get { return (Thickness)GetValue(EntryMarginProperty); }
+        set { SetValue(EntryMarginProperty, value); }
+    }
 
     /// <summary>
     /// Gets or sets the size of the placeholder text for the text of this entry.

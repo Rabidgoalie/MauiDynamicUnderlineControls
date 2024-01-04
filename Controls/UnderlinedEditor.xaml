@@ -29,6 +29,7 @@
             TextColor="{Binding TextColor, Source={x:Reference Container}}"
             Text="{Binding Text, Source={x:Reference Container}}"
             MaxLength="{Binding MaxLength, Source={x:Reference Container}}"
+            Margin="{Binding EditorMargin, Source={x:Reference Container}}"
             
             AutoSize="TextChanges"
             Background="Transparent"

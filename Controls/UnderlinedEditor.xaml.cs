@@ -20,6 +20,8 @@ public partial class UnderlinedEditor : Grid
     #endregion
 
     #region Editor-based_Properties
+    public static readonly BindableProperty EditorMarginProperty = BindableProperty.Create(nameof(EditorMargin), typeof(Thickness), typeof(UnderlinedEditor), default(Thickness));
+
     public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(UnderlinedEditor), default(string));
     public static readonly BindableProperty PlaceholderColorProperty = BindableProperty.Create(nameof(PlaceholderColor), typeof(Color), typeof(UnderlinedEditor), new Color(0.5f));
     public static readonly BindableProperty FontAttributesProperty = BindableProperty.Create(nameof(FontAttributes), typeof(FontAttributes), typeof(UnderlinedEditor), FontAttributes.None);
@@ -134,6 +136,15 @@ public partial class UnderlinedEditor : Grid
     #endregion
 
     #region Editor-based_Mutators
+
+    /// <summary>
+    /// Gets or set the margin for the wrapped Editor control.
+    /// </summary>
+    public Thickness EditorMargin
+    {
+        get { return (Thickness)GetValue(EditorMarginProperty); }
+        set { SetValue(EditorMarginProperty, value); }
+    }
 
     /// <summary>
     /// Gets or sets the size of the placeholder text for the text of this editor.

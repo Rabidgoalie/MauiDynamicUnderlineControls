@@ -30,6 +30,7 @@
             TextColor="{Binding TextColor, Source={x:Reference Container}}"
             Text="{Binding Text, Source={x:Reference Container}}"
             MaxLength="{Binding MaxLength, Source={x:Reference Container}}"
+            Margin="{Binding SearchBarMargin, Source={x:Reference Container}}"
             
             SearchCommand="{Binding SearchCommand, Source={x:Reference Container}}"
             SearchCommandParameter="{Binding SearchCommandParameter, Source={x:Reference Container}}"

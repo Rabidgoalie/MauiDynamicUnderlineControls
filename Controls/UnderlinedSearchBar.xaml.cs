@@ -22,6 +22,8 @@ public partial class UnderlinedSearchBar : Grid
     #endregion
 
     #region SearchBar-based_Properties
+    public static readonly BindableProperty SearchBarMarginProperty = BindableProperty.Create(nameof(SearchBarMargin), typeof(Thickness), typeof(UnderlinedSearchBar), default(Thickness));
+
     public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(UnderlinedSearchBar), default(string));
     public static readonly BindableProperty PlaceholderColorProperty = BindableProperty.Create(nameof(PlaceholderColor), typeof(Color), typeof(UnderlinedSearchBar), new Color(0.5f));
     public static readonly BindableProperty FontAttributesProperty = BindableProperty.Create(nameof(FontAttributes), typeof(FontAttributes), typeof(UnderlinedSearchBar), FontAttributes.None);
@@ -146,6 +148,15 @@ public partial class UnderlinedSearchBar : Grid
     #endregion
 
     #region SearchBar-based_Mutators
+
+    /// <summary>
+    /// Gets or set the margin for the wrapped SearchBar control.
+    /// </summary>
+    public Thickness SearchBarMargin
+    {
+        get { return (Thickness)GetValue(SearchBarMarginProperty); }
+        set { SetValue(SearchBarMarginProperty, value); }
+    }
 
     /// <summary>
     /// Gets or sets the size of the placeholder text for the text of this search bar.

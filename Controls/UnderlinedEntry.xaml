@@ -29,10 +29,10 @@
             TextColor="{Binding TextColor, Source={x:Reference Container}}"
             Text="{Binding Text, Source={x:Reference Container}}"
             MaxLength="{Binding MaxLength, Source={x:Reference Container}}"
+            Margin="{Binding EntryMargin, Source={x:Reference Container}}"
             
             Background="Transparent"
-            BackgroundColor="Transparent"
-            Margin="{OnPlatform Android='0, 0, 0, -4', iOS='0, 0, 0, 0', MacCatalyst='0', WinUI='0'}"/>
+            BackgroundColor="Transparent"/>
     </Border>
     
     <!-- Limitation
