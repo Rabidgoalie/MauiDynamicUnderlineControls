@@ -31,7 +31,8 @@ public partial class UnderlinedEditor : Grid
     public static readonly BindableProperty TextTransformProperty = BindableProperty.Create(nameof(TextTransform), typeof(TextTransform), typeof(UnderlinedEditor), TextTransform.None);
     public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(UnderlinedEditor), default(Color));
 
-    public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(UnderlinedEditor), default(string), defaultBindingMode: BindingMode.TwoWay);
+    public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(UnderlinedEditor), default(string), defaultBindingMode: BindingMode.TwoWay,
+        propertyChanged: (bindable, oldValue, newValue) => ((UnderlinedEditor)bindable).OnTextChanged((string)oldValue, (string)newValue));
 
     public static readonly BindableProperty MaxLengthProperty = BindableProperty.Create(nameof(MaxLength), typeof(int), typeof(UnderlinedEditor), int.MaxValue);
     public static readonly BindableProperty HorizontalTextAlignmentProperty = BindableProperty.Create(nameof(HorizontalTextAlignment), typeof(TextAlignment), typeof(UnderlinedEditor), TextAlignment.Start);
@@ -262,6 +263,10 @@ public partial class UnderlinedEditor : Grid
 
 
 
+    public event EventHandler<TextChangedEventArgs> TextChanged;
+
+
+
     /////////////////////////////////////////////////////////////////////////////////
     // Methods
     /////////////////////////////////////////////////////////////////////////////////
@@ -281,6 +286,11 @@ public partial class UnderlinedEditor : Grid
     private void ContainedEntry_Focused(object sender, FocusEventArgs e)
     {
         SetUnderlineWidth();
+    }
+
+    protected virtual void OnTextChanged(string oldValue, string newValue)
+    {
+        TextChanged?.Invoke(this, new TextChangedEventArgs(oldValue, newValue));
     }
 
     private void SetUnderlineWidth()

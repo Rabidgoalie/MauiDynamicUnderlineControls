@@ -31,7 +31,8 @@ public partial class UnderlinedEntry : Grid
     public static readonly BindableProperty TextTransformProperty = BindableProperty.Create(nameof(TextTransform), typeof(TextTransform), typeof(UnderlinedEntry), TextTransform.None);
     public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(UnderlinedEntry), default(Color));
 
-    public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(UnderlinedEntry), default(string), defaultBindingMode: BindingMode.TwoWay);
+    public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(UnderlinedEntry), default(string), defaultBindingMode: BindingMode.TwoWay,
+        propertyChanged: (bindable, oldValue, newValue) => ((UnderlinedEntry)bindable).OnTextChanged((string)oldValue, (string)newValue));
 
     public static readonly BindableProperty MaxLengthProperty = BindableProperty.Create(nameof(MaxLength), typeof(int), typeof(UnderlinedEntry), int.MaxValue);
     public static readonly BindableProperty HorizontalTextAlignmentProperty = BindableProperty.Create(nameof(HorizontalTextAlignment), typeof(TextAlignment), typeof(UnderlinedEntry), TextAlignment.Start);
@@ -260,6 +261,12 @@ public partial class UnderlinedEntry : Grid
 
     #endregion
 
+
+
+    public event EventHandler<TextChangedEventArgs> TextChanged;
+
+
+
     /////////////////////////////////////////////////////////////////////////////////
     // Methods
     /////////////////////////////////////////////////////////////////////////////////
@@ -279,6 +286,11 @@ public partial class UnderlinedEntry : Grid
     private void ContainedEntry_Focused(object sender, FocusEventArgs e)
     {
         SetUnderlineWidth();
+    }
+
+    protected virtual void OnTextChanged(string oldValue, string newValue)
+    {
+        TextChanged?.Invoke(this, new TextChangedEventArgs(oldValue, newValue));
     }
 
     private void SetUnderlineWidth()

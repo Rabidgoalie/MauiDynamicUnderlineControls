@@ -17,7 +17,7 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
-		<Version>$(VersionPrefix)1.1.0</Version>
+		<Version>$(VersionPrefix)1.2.0</Version>
 		<PackageProjectUrl>https://github.com/Rabidgoalie/MauiDynamicUnderlineControls</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Rabidgoalie/MauiDynamicUnderlineControls.git</RepositoryUrl>
 	</PropertyGroup>
